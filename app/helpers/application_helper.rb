@@ -1,6 +1,8 @@
 module ApplicationHelper
   def page_title title, in_page = true
-    set_meta_tags :site => t('app_name'), :title => title, :reverse => true
+    if defined? set_meta_tags
+      set_meta_tags :site => t('app_name'), :title => title, :reverse => true
+    end
     content_for(:head_title) { title }
     if in_page == true
       content_for(:page_title) { title }      
@@ -124,6 +126,21 @@ module ApplicationHelper
       end
     end
     output.html_safe
+  end
+  
+  def analytics_tag ga_id
+    output = '
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push([\'_setAccount\', \'' + ga_id + '\']);
+        _gaq.push([\'_trackPageview\']);
+        (function() {
+            var ga = document.createElement(\'script\'); ga.type = \'text/javascript\'; ga.async = true;
+            ga.src = (\'https:\' == document.location.protocol ? \'https://ssl\' : \'http://www\') + \'.google-analytics.com/ga.js\';
+            var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>'.html_safe
+    output
   end
   
   def resource_name

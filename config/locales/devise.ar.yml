@@ -1,0 +1,60 @@
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+ar:
+  errors:
+    messages:
+      expired: "انتهت صلاحية الطلب.. برجاء طلب أخر"
+      not_found: "غير موجود"
+      already_confirmed: "تم التفعيل، يرجى تسجيل الدخول "
+      not_locked: "لم يتم غلق الحساب"
+      not_saved:
+        one: "خطأ منع الحفظ 1 %{resource} :"
+        other: "%{count} خطأ منع الحفظ %{resource}:"
+      confirmation_period_expired: "تحتاج تفعيل خلال %{period}, برجاء إرسال طلب جديد"
+
+  devise:
+    failure:
+      already_authenticated: 'لقد قمت بالتسجيل من قبل'
+      unauthenticated: 'تحتاج لتسجيل الدخول أو الاشتراك قبل المتابعة'
+      unconfirmed: 'برجاء تأكيد حسابك قبل المتابعة.'
+      locked: 'تم إيقاف حسابك مؤقتا . تم إرسال تعليمات إعادة تشغيل الحساب لبريدك الإلكتروني'
+      invalid: 'بريد إلكتروني أو كلمة السر غير صالحه'
+      invalid_email: 'بريد إلكتروني أو كلمة السر غير صالحه'
+      invalid_token: ''
+      timeout: 'انتهت صلاحية الجلسة الخاصة بك، يرجى تسجيل الدخول مجدداً للمتابعة'
+      inactive: 'لم يتم تفعيل حسابك حتى الان'
+    sessions:
+      signed_in: 'تم التسجيل بنجاح'
+      signed_out: 'تم تسجيل الخروج بنجاح'
+    passwords:
+      send_instructions: 'سنرسل رسالة بريد إلكتروني مع تعليمات حول كيفية إعادة تعيين كلمة السر الخاصة بك في خلال دقائق.'
+      updated: 'تم تغيير كلمة السر بنجاح'
+      updated_not_active: '' #??
+      send_paranoid_instructions: "لو بريدك الإلكتروني موجود في قاعدة بياناتنا، سيصلك رابط استعادة كلمة السر خلال دقائق"
+      no_token: "لا يمكنك دخول هذه الصفحة إلا إذا استلمت رابط تغيير كلمة السر على البريد الإلكتروني. إذا كنت استلمت الرابط برجاء التأكد من أنك تستخدم URL الكامل"
+    confirmations:
+      send_instructions: 'ستصلك رساله على بريدك الإلكتروني لتفعيل حسابك في خلال دقائق'
+      send_paranoid_instructions: 'لو بريدك الإلكتروني موجود في قاعدة بياناتنا، سيصلك تعليمات تفعيل الحساب خلال دقائق'
+      confirmed: 'تم تفعيل حسابك بنجاح.. و تم تسجيل دخولك '
+    registrations:
+      signed_up: 'أهلا ! تم تسجيل الدخول بنجاح'
+      signed_up_but_unconfirmed: 'ستصلك رسالة برابط التأكيد على بريدك الإلكتروني. يرجى فتح الرابط لتفعيل حسابك.'
+      signed_up_but_inactive: 'تم التسجيل بنجاح. لا يمكن تسجيل دخولك حتى يتم تفعيل حسابك'
+      signed_up_but_locked: 'تم التسجيل بنجاح. لا يمكن تسجيل دخولك لأن حسابك مغلق'
+      updated: 'قمت بتحديث حسابك بنجاح'
+      update_needs_confirmation: "قمت بتحديث حسابك بنجاح، ولكن نحن بحاجة للتحقق من عنوان بريدك الإلكتروني الجديد. برجاء التحقق من الرابط على بريدك الإلكتروني لتأكيد التغيرات الجديد."
+      destroyed: ' تم إلغاء حسابك بنجاح. نأمل أن نراكم مرة أخرى قريبا'
+    unlocks:
+      send_instructions: 'ستصلك رسالة  على البريد الإلكتروني مع تعليمات فتح حسابك في خلال دقائق.'
+      unlocked: 'تم فتح حسابك بنجاح.برجاء تسجيل الدخول للمتابعة.'
+      send_paranoid_instructions: 'إذا كان حسابك موجودا،ستصلك رسالة على بريدك الإلكتروني مع تعليمات حول كيفية فتحه في خلال دقائق'
+    omniauth_callbacks:
+      success: 'تم الدخول بنجاح من حساب %{kind}'
+      failure: 'لم يتم الدخول من حساب %{kind} لأن "%{reason}".'
+    mailer:
+      confirmation_instructions:
+        subject: 'تعليمات التأكيد'
+      reset_password_instructions:
+        subject: 'تعليمات إعادة تعيين كلمة السر '
+      unlock_instructions:
+        subject: 'تعليمات الفتح'

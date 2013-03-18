@@ -1,14 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale %>" dir="<%= I18n.locale.to_sym == :ar ? 'rtl' : 'ltr' %>">
 <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RailsYeast</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-</head>
-<body>
 
-<%= yield %>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+    <![endif]-->
 
-</body>
-</html>
+    <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= analytics_tag 'UA-28077649-1' %>
+  </head>
+  <body class="<%= I18n.locale.to_sym == :ar ? 'rtl' : 'ltr' %>">
+
+    <%= render :partial => 'layouts/header' %>
+
+    <div class="primary">
+      <div class="primary-container">
+        <%= render_block nil do %>
+          <% if user_signed_in? %>
+            <%= link_to_nav t('navigation.newsfeed'), dashboard_path, :icon => 'globe' %>
+          <% end %>
+        <% if can? :create, Conversation %>
+        <%= link_to_nav t('navigation.messages'), conversations_path, :icon => 'envelope', :counter => Conversation.unread(current_user).length, id: "messages-nav" %>
+        <% end %>
+        <%= link_to_nav t('groups.suggested'), suggestions_path, :icon => 'th-large' %>
+        <% end %>
+        <% if user_signed_in? %>
+        <%= render_block t('groups.my_groups') do %>
+        <% current_user.own_groups.each do |group| %>
+        <%= link_to_nav group.title.truncate(20), group, :image => group.picture.url(:thumb), :counter => GroupUpdate.get_group_updates_for_user(current_user.id,group.id)%>
+        <% end %>
+        <% if can? :create, Group %>
+        <%= link_to_nav t('groups.create_group'), new_group_path, :icon => 'plus' %>
+        <% end %>
+        <% end %>
+      
+      
+        <%= render_block t('users.joined_groups') , {:class=> "joined-groups-block"} do %>
+      
+        <% current_user.memberships.joined_only.includes(:group).map(&:group).each do |group| %>
+        <%= link_to_nav group.title.truncate(20), group, :image => group.picture.url(:thumb), :counter => GroupUpdate.get_group_updates_for_user(current_user.id,group.id)  %>
+        <% end %>
+            
+        <% end %>
+        <% end %>
+      </div>
+      <%= yield :primary %>
+      <%= render :partial => 'layouts/footer' %>
+    </div><!--/primary-->
+
+    <div class="wrapper clearfix <%= 'with_secondary' if content_for?(:secondary) %>">
+      <div class="header">
+        <!-- Flash messages -->
+        <% [:notice, :error, :alert].each do |level| %>
+        <% unless flash[level].blank? %>
+        <div class="flash-message <%= flash_class(level) %> fade in">
+          <a href="#" data-dismiss="alert" class="close">×</a>
+          <%= flash[level] %>
+        </div>
+        <% end %>
+        <% end %>
+        <%= yield :header %>
+        <% if content_for? :page_title %>
+        <div class="page-header">
+          <h1><%= yield :page_title %></h1>
+          <% if content_for? :context %>
+          <div class="actions context">
+            <%= yield :context %>
+          </div>
+          <% end %>
+        </div>
+        <% end %>
+      </div><!--/header-->
+      <div class="content-container">
+        <div class="pull-left content">
+          <%= yield %>
+
+        </div> <!-- /content -->
+        <% if content_for? :secondary %>
+        <div class="pull-right secondary">
+          <%= yield :secondary %>
+        </div><!--/secondary-->
+        <% end %>
+      </div>
+
+      <div id="chat-sound"></div>
+      <div class="chat-bar">
+      </div>
+    </div> <!-- /wrapper -->
+
+    <!-- hidden field to store user auth token if they are logged in -->
+    <% if user_signed_in? %>
+    <%= hidden_field_tag 'auth_token', current_user.authentication_token %>
+    <%= hidden_field_tag 'logged_in_user_id', current_user.id %>
+    <% end %>
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <%= javascript_include_tag "application" %>
+
+  </body>
+  </html>
