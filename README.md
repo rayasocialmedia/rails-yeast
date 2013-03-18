@@ -5,6 +5,6 @@ It contains readily configured gems, view helpers, javascript libraries, etc.
 
 How-to user:
 ------------
-# Clone the repository.
-# Run the command:
+1. Clone the repository.
+2. Run the command:
 ``rails g rsm:rename NewName``
