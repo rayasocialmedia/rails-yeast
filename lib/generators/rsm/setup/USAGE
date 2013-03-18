@@ -1,0 +1,5 @@
+Description:
+    Setup your Rails project
+
+Example:
+    rails generate rsm:setup app_name

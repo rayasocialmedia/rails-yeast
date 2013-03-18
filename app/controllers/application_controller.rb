@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
       # Passed locale in parameters overrides default
       I18n.locale = params[:locale]
     end
-    if user_signed_in?
+    if user_signed_in? && defined? current_user.locale
       I18n.locale = current_user.locale
     end
   end

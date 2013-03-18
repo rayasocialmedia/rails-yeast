@@ -3,8 +3,18 @@
     <div class="container">
       <%= link_to 'RailsYeast', root_path, :class => 'pull-left brand active' %>
       <div class="nav-buttons pull-right">
-        <%= link_to t("login"), new_user_session_path, :class => "btn btn-primary"  %>
-        <%= link_to t("register"), new_user_registration_path, :class => "btn btn-primary"  %>
+        <% if user_signed_in? %>
+          <%= link_to "#{current_user.name} <span class=\"caret\"></span>".html_safe, root_path, class: 'btn dropdown-toggle', 'data-toggle' => 'dropdown' %>
+          <ul class="dropdown-menu pull-right" role="menu">
+            <%= link_to_nav t("navigation.edit_profile"), edit_registration_path(current_user), icon: 'edit'  %>
+            <li class="divider"></li>
+            <%= link_to_nav t("navigation.logout"), destroy_user_session_path, icon: 'signout' %>
+          </ul>
+          
+        <% else %>
+          <%= link_to t("login"), new_user_session_path, :class => "btn btn-primary"  %>
+          <%= link_to t("register"), new_user_registration_path, :class => "btn btn-primary"  %>
+        <% end %>
       </div>
     </div>
   </div>

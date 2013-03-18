@@ -62,12 +62,6 @@
       <%= render :partial => 'layouts/footer' %>
     </div> <!-- /wrapper -->
 
-    <!-- hidden field to store user auth token if they are logged in -->
-    <% if user_signed_in? %>
-    <%= hidden_field_tag 'auth_token', current_user.authentication_token %>
-    <%= hidden_field_tag 'logged_in_user_id', current_user.id %>
-    <% end %>
-
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
 
