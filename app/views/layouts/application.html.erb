@@ -21,37 +21,7 @@
 
     <div class="primary">
       <div class="primary-container">
-        <%= render_block nil do %>
-          <% if user_signed_in? %>
-            <%= link_to_nav t('navigation.newsfeed'), dashboard_path, :icon => 'globe' %>
-          <% end %>
-        <% if can? :create, Conversation %>
-        <%= link_to_nav t('navigation.messages'), conversations_path, :icon => 'envelope', :counter => Conversation.unread(current_user).length, id: "messages-nav" %>
-        <% end %>
-        <%= link_to_nav t('groups.suggested'), suggestions_path, :icon => 'th-large' %>
-        <% end %>
-        <% if user_signed_in? %>
-        <%= render_block t('groups.my_groups') do %>
-        <% current_user.own_groups.each do |group| %>
-        <%= link_to_nav group.title.truncate(20), group, :image => group.picture.url(:thumb), :counter => GroupUpdate.get_group_updates_for_user(current_user.id,group.id)%>
-        <% end %>
-        <% if can? :create, Group %>
-        <%= link_to_nav t('groups.create_group'), new_group_path, :icon => 'plus' %>
-        <% end %>
-        <% end %>
-      
-      
-        <%= render_block t('users.joined_groups') , {:class=> "joined-groups-block"} do %>
-      
-        <% current_user.memberships.joined_only.includes(:group).map(&:group).each do |group| %>
-        <%= link_to_nav group.title.truncate(20), group, :image => group.picture.url(:thumb), :counter => GroupUpdate.get_group_updates_for_user(current_user.id,group.id)  %>
-        <% end %>
-            
-        <% end %>
-        <% end %>
-      </div>
       <%= yield :primary %>
-      <%= render :partial => 'layouts/footer' %>
     </div><!--/primary-->
 
     <div class="wrapper clearfix <%= 'with_secondary' if content_for?(:secondary) %>">
@@ -66,6 +36,8 @@
         <% end %>
         <% end %>
         <%= yield :header %>
+      </div><!--/header-->
+      <div class="container content-container">
         <% if content_for? :page_title %>
         <div class="page-header">
           <h1><%= yield :page_title %></h1>
@@ -76,8 +48,6 @@
           <% end %>
         </div>
         <% end %>
-      </div><!--/header-->
-      <div class="content-container">
         <div class="pull-left content">
           <%= yield %>
 
@@ -89,9 +59,7 @@
         <% end %>
       </div>
 
-      <div id="chat-sound"></div>
-      <div class="chat-bar">
-      </div>
+      <%= render :partial => 'layouts/footer' %>
     </div> <!-- /wrapper -->
 
     <!-- hidden field to store user auth token if they are logged in -->

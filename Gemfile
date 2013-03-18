@@ -36,6 +36,8 @@ end
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails'
 ###################### Authentication & Authorization ##########################
+## Simple authorization solution for Rails
+gem 'cancan'
 # Authentication using Devise
 gem 'devise'
 ## oAuth for Devise
@@ -43,8 +45,6 @@ gem 'devise'
 # gem "omniauth-facebook"
 ## Administration Area
 # gem 'typus'
-## Simple authorization solution for Rails
-gem 'cancan'
 ############################## Optimization ####################################
 ## Caching caching caching
 # gem 'cache_digests'
@@ -75,11 +75,11 @@ gem 'cancan'
 ## Endless page
 # gem 'spaghetti'
 ############################### Miscellaneous ##################################
+# acttive_attr to create models not backed to ORM
+gem 'active_attr'
 ## Redis DB
 # gem 'redis'
 ## Background Tasks
 # gem 'resque'
 ## Task Scheduling (cron)
 # gem 'whenever'
-# acttive_attr to create models not backed to ORM
-# gem 'active_attr'

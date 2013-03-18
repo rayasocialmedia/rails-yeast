@@ -129,10 +129,9 @@ module ApplicationHelper
   end
   
   def analytics_tag ga_id
-    output = '
-    <script type="text/javascript">
+    '<script type="text/javascript">
         var _gaq = _gaq || [];
-        _gaq.push([\'_setAccount\', \'' + ga_id + '\']);
+        _gaq.push([\'_setAccount\', \''.html_safe + ga_id.html_safe + '\']);
         _gaq.push([\'_trackPageview\']);
         (function() {
             var ga = document.createElement(\'script\'); ga.type = \'text/javascript\'; ga.async = true;
@@ -140,7 +139,6 @@ module ApplicationHelper
             var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(ga, s);
         })();
     </script>'.html_safe
-    output
   end
   
   def resource_name

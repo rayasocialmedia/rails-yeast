@@ -1,5 +1,4 @@
 RailsYeast::Application.routes.draw do
-  devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -50,8 +49,27 @@ RailsYeast::Application.routes.draw do
   #     resources :products
   #   end
 
+  devise_for :users,
+    # controllers: {
+    #   :registrations => "registrations",
+    #   :omniauth_callbacks => 'users/omniauth_callbacks'
+    # },
+    path: 'u',
+    path_names: {
+      sign_in: 'in',
+      sign_out: 'out',
+      password: 'pass',
+      confirmation: 'confirm',
+      unlock: 'unlock',
+      registration: 'reg',
+      sign_up: 'new'
+    }
+  
+  resources :resources
+  resources :contacts, only: [:new, :create]
   match 'welcome' => 'resources#welcome'
   match 'privacy' => 'resources#privacy'
+  match 'contact' => 'contacts#new'
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   root :to => 'resources#welcome'
