@@ -1,7 +1,7 @@
 <div class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
     <div class="container">
-      <%= link_to 'RailsYeast', root_path, :class => 'pull-left brand active' %>
+      <%= link_to t('app_name'), root_path, :class => 'pull-left brand active' %>
       <div class="nav-buttons pull-right">
         <% if user_signed_in? %>
           <%= link_to "#{current_user.name} <span class=\"caret\"></span>".html_safe, root_path, class: 'btn dropdown-toggle', 'data-toggle' => 'dropdown' %>

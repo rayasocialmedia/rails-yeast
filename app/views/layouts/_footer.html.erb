@@ -1,7 +1,9 @@
 <footer>
   <%= render_block do %>
-	<%= link_to_nav t('resources.contact'), contact_path %>
-	<%= link_to_nav t('resources.privacy'), privacy_path %>
+  <%= link_to_nav t('resources.home'), root_path %>
+  <%= link_to_nav t('resources.about'), about_path %>
+  <%= link_to_nav t('resources.contact'), contact_path %>
+  <%= link_to_nav t('resources.privacy'), privacy_path %>
   <% end %>
-  <p class="copyright"><%= t('powered_by') %></p>
+  <p class="copyright"><%= t('powered_by_html') %></p>
 </footer>

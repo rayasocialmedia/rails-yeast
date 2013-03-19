@@ -68,6 +68,7 @@ RailsYeast::Application.routes.draw do
   resources :resources
   resources :contacts, only: [:new, :create]
   match 'welcome' => 'resources#welcome'
+  match 'about' => 'resources#about'
   match 'privacy' => 'resources#privacy'
   match 'contact' => 'contacts#new'
   # You can have the root of your site routed with "root"

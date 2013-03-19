@@ -9,11 +9,7 @@ module Rsm
       puts "Renaming app from #{old_name} to #{name}"
       
       in_root do
-        gsub_file 'app/views/layouts/application.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
-          "#{name_capitalized}"
-        end
-      
-        gsub_file 'app/views/resources/privacy.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
+        gsub_file 'config/locales/en.yml', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
           "#{name_capitalized}"
         end
       

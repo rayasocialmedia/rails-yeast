@@ -2,4 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  app_name: "Rails-yeast"
+  powered_by_html: 'Powered by <a href="http://rayasocialmedia.com?ref=Rails-yeast">Raya Social Media</a>'
+  
+  resources:
+    home: "Home page"
+    about: "About us"
+    contact: "Contact us"
+    contact_submit: "Send"
+    privacy: "Privacy"
