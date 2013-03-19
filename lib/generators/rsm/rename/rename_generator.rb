@@ -13,7 +13,7 @@ module Rsm
           "#{name_capitalized}"
         end
       
-        gsub_file 'app/views/views/resources/privacy.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
+        gsub_file 'app/views/resources/privacy.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
           "#{name_capitalized}"
         end
       
