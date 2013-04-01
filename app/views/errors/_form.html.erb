@@ -1,0 +1,10 @@
+<% if errors.any? %>
+<div class="alert alert-error">
+  <%= t('errors.form', :count => pluralize(errors.count, t("error"))) %>
+  <ul>
+    <% errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

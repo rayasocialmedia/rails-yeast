@@ -65,13 +65,12 @@ RailsYeast::Application.routes.draw do
       sign_up: 'new'
     }
   
-  resources :resources
   resources :contacts, only: [:new, :create]
+  resources :resources
+  resources :errors
   match 'welcome' => 'resources#welcome'
   match 'about' => 'resources#about'
   match 'privacy' => 'resources#privacy'
   match 'contact' => 'contacts#new'
-  # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
   root :to => 'resources#welcome'
 end
