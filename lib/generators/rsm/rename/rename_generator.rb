@@ -4,12 +4,23 @@ module Rsm
     argument :name, type: :string, require: true
     def rename_to
       old_name = "#{Rails.application.class.parent}"
+      name_downcased = name.downcase.gsub(/\s/, "_")
       name_capitalized = name.downcase.gsub(/\s/, "_").camelize.capitalize
     
       puts "Renaming app from #{old_name} to #{name}"
       
       in_root do
-        gsub_file 'config/locales/en.yml', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
+        destroy_file '.git'
+        
+        gsub_file 'config/database.yml', /#{Regexp.escape(old_name)}/mi do |match|
+          "#{name_downcased}"
+        end
+      
+        gsub_file 'app/views/layouts/application.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
+          "#{name_capitalized}"
+        end
+      
+        gsub_file 'app/views/resources/privacy.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
           "#{name_capitalized}"
         end
       
