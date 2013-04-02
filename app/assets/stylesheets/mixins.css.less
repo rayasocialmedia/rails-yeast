@@ -1,0 +1,72 @@
+@import "variables.css.less";
+
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+.inner-shadow(@color, @distance){
+  -webkit-box-shadow:inset 0 0 @distance @color;
+     -moz-box-shadow:inset 0 0 @distance @color;
+          box-shadow:inset 0 0 @distance @color;
+}
+
+.gradient(@color1, @color2){
+   background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(@color1), to(@color2));
+   background-image: -webkit-linear-gradient(top, @color1, @color2); 
+   background-image: -moz-linear-gradient(top, @color1, @color2);
+   background-image: -ms-linear-gradient(top, @color1, @color2);
+   background-image: -o-linear-gradient(top, @color1, @color2);
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=@color1, endColorstr=@color2); /* for IE */
+}
+
+.flip {
+  -webkit-transform: scaleX(-1);
+     -moz-transform: scaleX(-1);
+       -o-transform: scaleX(-1);
+          transform: scaleX(-1);
+             filter: FlipH;
+}
+
+.border-box-model{
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.zero-margin-and-padding{
+    padding: 0;
+     margin: 0;
+}
+
+.no-background-or-border{
+    background: none;
+        border: none;
+}
+
+.text-shadow(@x, @y, @blur, @color){
+  text-shadow: @x @y @blur @color;
+}
+
+.border-color(@color){
+  border-top-color: @color;
+  border-left-color: @color;
+  border-right-color: @color;
+  border-bottom-color: @color;
+}
+
+.green-submit-button{
+}
+
+.opacity(@opacity) {
+  opacity: @opacity / 100;
+  filter: ~"alpha(opacity=@{opacity})";
+}
