@@ -10,7 +10,7 @@ module Rsm
       puts "Renaming app from #{old_name} to #{name}"
       
       in_root do
-        destroy_file '.git'
+        remove_file '.git'
         
         gsub_file 'config/database.yml', /#{Regexp.escape(old_name)}/mi do |match|
           "#{name_downcased}"
