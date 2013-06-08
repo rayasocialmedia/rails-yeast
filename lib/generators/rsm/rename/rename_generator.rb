@@ -12,24 +12,24 @@ module Rsm
       in_root do
         remove_file '.git'
         
+        gsub_file 'Rakefile', /(#{Regexp.escape(old_name.capitalize)})(::Application.load_tasks)/mi do |match|
+          "#{name_capitalized}::Application.load_tasks"
+        end
+        
+        gsub_file 'config.ru', /(run) (#{Regexp.escape(old_name)})(::Application)/mi do |match|
+          "run #{name_capitalized}::Application"
+        end
+      
+        gsub_file 'config/application.rb', /(module) (#{Regexp.escape(old_name)})/mi do |match|
+          "module #{name_capitalized}"
+        end
+      
         gsub_file 'config/locales/en.yml', /#{Regexp.escape(old_name)}/mi do |match|
           "#{name_downcased}"
         end
       
         gsub_file 'config/database.yml', /#{Regexp.escape(old_name)}/mi do |match|
           "#{name_capitalized}"
-        end
-      
-        gsub_file 'app/views/layouts/application.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
-          "#{name_capitalized}"
-        end
-      
-        gsub_file 'app/views/resources/privacy.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
-          "#{name_capitalized}"
-        end
-      
-        gsub_file 'config/application.rb', /(module) (#{Regexp.escape(old_name)})/mi do |match|
-          "module #{name_capitalized}"
         end
       
         gsub_file 'config/environment.rb', /(#{Regexp.escape(old_name)})(::Application.initialize!)/mi do |match|
@@ -47,10 +47,6 @@ module Rsm
           "#{name_capitalized}::Application.routes"
         end
       
-        gsub_file 'config.ru', /(run) (#{Regexp.escape(old_name)})(::Application)/mi do |match|
-          "run #{name_capitalized}::Application"
-        end
-      
         gsub_file 'config/initializers/secret_token.rb', /(#{Regexp.escape(old_name)})(::Application.config.secret_token)/mi do |match|
           "#{name_capitalized}::Application.config.secret_token"
         end
@@ -59,10 +55,14 @@ module Rsm
           "#{name_capitalized}::Application.config.session_store"
         end
       
-        gsub_file 'Rakefile', /(#{Regexp.escape(old_name.capitalize)})(::Application.load_tasks)/mi do |match|
-          "#{name_capitalized}::Application.load_tasks"
+        gsub_file 'app/views/layouts/application.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
+          "#{name_capitalized}"
         end
-        
+      
+        gsub_file 'app/views/resources/privacy.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|
+          "#{name_capitalized}"
+        end
+      
       end
     end
   end
