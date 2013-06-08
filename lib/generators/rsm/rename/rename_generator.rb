@@ -12,8 +12,12 @@ module Rsm
       in_root do
         remove_file '.git'
         
-        gsub_file 'config/database.yml', /#{Regexp.escape(old_name)}/mi do |match|
+        gsub_file 'config/locales/en.yml', /#{Regexp.escape(old_name)}/mi do |match|
           "#{name_downcased}"
+        end
+      
+        gsub_file 'config/database.yml', /#{Regexp.escape(old_name)}/mi do |match|
+          "#{name_capitalized}"
         end
       
         gsub_file 'app/views/layouts/application.html.erb', /#{Regexp.escape(old_name.capitalize)}/mi do |match|

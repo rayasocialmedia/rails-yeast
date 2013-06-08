@@ -14,13 +14,11 @@ end
 group :test do
   gem 'faker'
   gem 'capybara'
-  gem 'guard-rspec'
   gem 'launchy'
-  gem 'rspec-rails'
   gem 'factory_girl_rails'
 end
 ############################## Development #####################################
-group :development do
+group :development, :test, :testing do
   ## Debug ruby code
   gem 'debugger'
   ## Provides a better error page for Rails and other Rack apps
@@ -31,6 +29,11 @@ group :development do
   gem 'bullet'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'autotest-rails', '4.1.2'
+  gem 'ZenTest', '4.8.0'
+  gem 'spork'
 end
 ################################## UI ##########################################
 gem 'jquery-rails'
@@ -74,6 +77,20 @@ gem 'devise'
 # gem 'kaminari'
 ## Endless page
 # gem 'spaghetti'
+############################### Amazon AWS #####################################
+# Amazon Web Services
+# gem 'aws-sdk'
+# Amazon Web Services (S3 Storage)
+# gem 'aws-s3'
+# SMTP: Amazon Simple Email Service (SES)
+# gem 'aws-ses', '~> 0.4.4', :require => 'aws/ses'
+## AWS cloudsearch
+# gem "asari"
+############################### 3rd party services #############################
+## Intercom Integration (intercom.io)
+# gem 'intercom-rails', '~> 0.2.21'
+# Error reporting: Airbrake
+# gem 'airbrake'
 ############################### Miscellaneous ##################################
 # acttive_attr to create models not backed to ORM
 gem 'active_attr'
@@ -83,3 +100,4 @@ gem 'active_attr'
 # gem 'resque'
 ## Task Scheduling (cron)
 # gem 'whenever'
+

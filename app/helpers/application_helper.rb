@@ -9,6 +9,10 @@ module ApplicationHelper
     end
   end
   
+  def application_error_messages_for(form)
+    form.error_messages header_message: nil, class: 'alert alert-error'
+  end
+  
   def url_for_asset type, source
     URI.join root_url, send("#{ type }_path", source)
   end
